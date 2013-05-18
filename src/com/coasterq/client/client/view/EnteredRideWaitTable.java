@@ -7,7 +7,6 @@ import java.util.List;
 import com.coasterq.client.client.data.EnteredRideWait;
 import com.coasterq.client.client.data.EnteredRideWaitManager;
 import com.finfrock.client.DataChangeListener;
-import com.finfrock.client.FacebookConnectionStatus;
 import com.finfrock.client.Row;
 import com.finfrock.client.Table;
 
@@ -23,17 +22,13 @@ public class EnteredRideWaitTable extends Table
   
   private EnteredRideWaitManager enteredRideWaitManager;
   
-  private FacebookConnectionStatus facebookConnectionStatus;
-  
   // --------------------------------------------------------------------------
   // Constructor
   // --------------------------------------------------------------------------
 
-  public EnteredRideWaitTable(EnteredRideWaitManager enteredRideWaitManager, 
-          FacebookConnectionStatus facebookConnectionStatus)
+  public EnteredRideWaitTable(EnteredRideWaitManager enteredRideWaitManager)
   {
      this.enteredRideWaitManager = enteredRideWaitManager;
-     this.facebookConnectionStatus = facebookConnectionStatus;
      
      enteredRideWaitManager.addDataChangeListener(new DataChangeListener()
      {
@@ -84,8 +79,7 @@ public class EnteredRideWaitTable extends Table
      
      if(enteredRideWaitRow == null)
      {
-       enteredRideWaitRow = new EnteredRideWaitRow(enteredRideWait, 
-           facebookConnectionStatus);
+       enteredRideWaitRow = new EnteredRideWaitRow(enteredRideWait);
         
         enteredRideWaitRowTable.put(enteredRideWait, enteredRideWaitRow);
      }

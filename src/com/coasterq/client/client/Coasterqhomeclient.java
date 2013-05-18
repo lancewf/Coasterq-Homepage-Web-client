@@ -4,13 +4,12 @@ import com.coasterq.client.client.connection.EnteredRideWaitRetriever;
 import com.coasterq.client.client.connection.EnteredRideWaitUpdateAgent;
 import com.coasterq.client.client.connection.ReleaseServiceLocations;
 import com.coasterq.client.client.connection.ServiceLocations;
+import com.coasterq.client.client.connection.TestServiceLocations;
 import com.coasterq.client.client.data.EnteredRideWaitManager;
 import com.coasterq.client.client.data.Node;
 import com.coasterq.client.client.data.ParkSearchWidgetTreeBuilder;
 import com.coasterq.client.client.view.EnteredRideWaitTable;
 import com.coasterq.client.client.view.UsersOnlineView;
-import com.finfrock.client.FacebookConnectionStatus;
-import com.finfrock.client.UserPanel;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -74,13 +73,10 @@ public class Coasterqhomeclient implements EntryPoint
       EnteredRideWaitManager enteredRideWaitManager = 
          buildEnteredRideManager(serviceLocations);
       
-      FacebookConnectionStatus facebookConnectionStatus = new FacebookConnectionStatus();
-      
       EnteredRideWaitTable table = new EnteredRideWaitTable(
-         enteredRideWaitManager, facebookConnectionStatus);
+         enteredRideWaitManager);
       
-      Widget userPanel = createUserAndOnlineUsersPanel(facebookConnectionStatus, 
-         serviceLocations);
+      Widget userPanel = createUserAndOnlineUsersPanel(serviceLocations);
       
       panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
       
@@ -94,7 +90,6 @@ public class Coasterqhomeclient implements EntryPoint
    }
    
    private Widget createUserAndOnlineUsersPanel(
-                              FacebookConnectionStatus facebookConnectionStatus, 
                               ServiceLocations serviceLocations)
    {
       HorizontalPanel panel = new HorizontalPanel();
@@ -109,11 +104,8 @@ public class Coasterqhomeclient implements EntryPoint
       
       panel.add(usersOnlineView);
       
-      UserPanel userPanel = new UserPanel(facebookConnectionStatus);
-      
       panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
       panel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-      panel.add(userPanel);
       
       return panel;
    }

@@ -10,9 +10,7 @@ public class EnteredRideWaitHeaderRow extends Row
    // Constructor
    // --------------------------------------------------------------------------
 
-   public EnteredRideWaitHeaderRow()
-   {
-      addColumn(createFriendColumn());
+   public EnteredRideWaitHeaderRow(){
       addColumn(createDateTimeColumn());
       addColumn(createRideColumn());
       addColumn(createParkColumn());
@@ -44,18 +42,6 @@ public class EnteredRideWaitHeaderRow extends Row
       column.setIndex(EnteredRideWaitRow.DATE_TIME_INDEX);
       column.setValueType(Column.TEXT_COLUMN_TYPE);
       
-      return column;
-   }
-
-   private Column createFriendColumn()
-   {
-      CommonColumn column = new CommonColumn();
-
-      column.setValue("Friend");
-      column.setStyleName("tableHeader");
-      column.setIndex(EnteredRideWaitRow.FRIEND_INDEX);
-      column.setValueType(Column.TEXT_COLUMN_TYPE);
-
       return column;
    }
    

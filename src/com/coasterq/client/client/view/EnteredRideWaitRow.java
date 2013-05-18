@@ -5,11 +5,9 @@ import java.util.Date;
 import com.coasterq.client.client.data.EnteredRideWait;
 import com.finfrock.client.Column;
 import com.finfrock.client.CommonColumn;
-import com.finfrock.client.FacebookConnectionStatus;
 import com.finfrock.client.Row;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Widget;
 
 public class EnteredRideWaitRow extends Row 
 {
@@ -18,15 +16,13 @@ public class EnteredRideWaitRow extends Row
    // Public static Data
    // --------------------------------------------------------------------------
 
-   public static final int FRIEND_INDEX = 0;
-
-   public static final int PARK_NAME_INDEX = 1;
+   public static final int PARK_NAME_INDEX = 0;
    
-   public static final int RIDE_NAME_INDEX = 2;
+   public static final int RIDE_NAME_INDEX = 1;
 
-   public static final int DATE_TIME_INDEX = 3;
+   public static final int DATE_TIME_INDEX = 2;
    
-   public static final int WAIT_TIME_INDEX = 4;
+   public static final int WAIT_TIME_INDEX = 3;
 
    // --------------------------------------------------------------------------
    // Private static Data
@@ -39,10 +35,7 @@ public class EnteredRideWaitRow extends Row
    // Constructor
    // --------------------------------------------------------------------------
 
-   public EnteredRideWaitRow(EnteredRideWait enteredRideWait,
-         FacebookConnectionStatus facebookConnectionStatus)
-   {
-      addColumn(createFriendColumn(enteredRideWait, facebookConnectionStatus));
+   public EnteredRideWaitRow(EnteredRideWait enteredRideWait){
       addColumn(createDateTimeColumn(enteredRideWait));
       addColumn(createRideColumn(enteredRideWait));
       addColumn(createParkColumn(enteredRideWait));
@@ -101,23 +94,6 @@ public class EnteredRideWaitRow extends Row
       column.setValue(text);
       column.setIndex(DATE_TIME_INDEX);
       column.setValueType(Column.TEXT_COLUMN_TYPE);
-      
-      return column;
-   }
-
-   private Column createFriendColumn(EnteredRideWait enteredRideWait, 
-                              FacebookConnectionStatus facebookConnectionStatus)
-   {
-      CommonColumn column = new CommonColumn();
-      
-      Widget friendProfilePicture = 
-         facebookConnectionStatus.createProfilePicture(
-            enteredRideWait.getFacebookUser());
-      
-      column.setValue(friendProfilePicture);
-      column.setStyleName("buttonColumn");
-      column.setIndex(FRIEND_INDEX);
-      column.setValueType(Column.WIDGET_COLUMN_TYPE);
       
       return column;
    }
